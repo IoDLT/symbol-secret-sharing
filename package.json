@@ -1,6 +1,6 @@
 {
   "name": "nem2-secret-sharing",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Implementing Shamir's secret sharing on NEM2.",
   "keywords": [
     "blockchain",
