@@ -43,7 +43,7 @@ export class SecretShareMessage {
         if (privateKey !== '') {
             privateKeyHex = secrets.str2hex(privateKey);
             shares = secrets.share(privateKeyHex, numOfrecipients, threshold);
-            return shares;
+            return shares;2
         }
         const account = Account.generateNewAccount(NetworkType.MIJIN_TEST);
         privateKeyHex = secrets.str2hex(account.privateKey);
