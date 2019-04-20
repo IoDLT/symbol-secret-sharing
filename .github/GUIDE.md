@@ -70,4 +70,4 @@ npm run validate
 
 ## Credits
 
-Thank you to all the people who have already contributed to nem2-secret-share library!!
+Thank you to all the people who have already contributed to nem2-secret-sharing library!!
