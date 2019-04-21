@@ -40,10 +40,10 @@ export class SecretShareMessage {
         let privateKeyHex: string;
         let shares: [any];
 
-        if (privateKey !== '') {
+        if (privateKey) {
             privateKeyHex = secrets.str2hex(privateKey);
             shares = secrets.share(privateKeyHex, numOfrecipients, threshold);
-            return shares;2
+            return shares;
         }
         const account = Account.generateNewAccount(NetworkType.MIJIN_TEST);
         privateKeyHex = secrets.str2hex(account.privateKey);
