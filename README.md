@@ -9,7 +9,7 @@ Warning:  This is an experimental library, it is NOT to be used for production a
 
 ### About
 
-This library utilizes Shamir's Secret Sharing, a mechanism in which a given secret is divided in to a series of parts that can be later be combined to reveal the secret (called the threshold scheme).  It uses this mechanism to 'shard' NEM2 private keys into multiple shares, of which `n` of `m` shares are required to fully reveal the secret.  You can read more about Shamir's Secret Sharing [![here](https://en.wikipedia.org/wiki/Shamir's_Secret_Sharing)].
+This library utilizes Shamir's Secret Sharing, a mechanism in which a given secret is divided in to a series of parts that can be later be combined to reveal the secret (called the threshold scheme).  It uses this mechanism to 'shard' NEM2 private keys into multiple shares, of which `n` of `m` shares are required to fully reveal the secret.  You can read more about Shamir's Secret Sharing [here](https://en.wikipedia.org/wiki/Shamir's_Secret_Sharing).
 
 This has a host of use cases in NEM2, such as the ability to distribute a private key to multiple individuals reflecting their permissions to access information on the blockchain.   
 
