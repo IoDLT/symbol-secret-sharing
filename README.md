@@ -1,6 +1,4 @@
-
 [![npm version](https://badge.fury.io/js/symbol-secret-sharing.svg)](https://badge.fury.io/js/symbol-secret-sharing)
-<img src="https://img.shields.io/hexpm/l/plug.svg">
 
 # Symbol Secret Sharing Library Concept
 
