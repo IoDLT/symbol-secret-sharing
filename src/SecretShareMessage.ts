@@ -3,7 +3,7 @@ import {
     Account,
     NetworkType,
     EncryptedMessage,
-} from 'nem2-sdk';
+} from 'symbol-sdk';
 
 import secrets from 'secrets.js-grempe';
 
@@ -16,7 +16,11 @@ export class SecretShareMessage {
      * @param threshold minimum number of shares needed to decrypt
      * @returns PlainMessage
      */
-    public static create(message: string, shardedPrivateKeyShares: [any], threshold: number): EncryptedMessage {
+    public static create(
+        message: string,
+        shardedPrivateKeyShares: [any],
+        threshold: number): EncryptedMessage {
+
         if (shardedPrivateKeyShares.length < threshold) {
             throw Error('number of shares not do match the threshold');
         } else {
@@ -36,18 +40,23 @@ export class SecretShareMessage {
      * @param threshold minimum number of shares needed to decrypt
      * @returns array of shares
      */
-    public static createShardedPrivateKey(numOfrecipients: number, threshold: number, privateKey?: string): [any] {
+    public static createShardedPrivateKey(
+        numOfRecipients: number,
+        threshold: number,
+        networkType: NetworkType,
+        privateKey?: string): [any] {
+
         let privateKeyHex: string;
         let shares: [any];
 
         if (privateKey) {
             privateKeyHex = secrets.str2hex(privateKey);
-            shares = secrets.share(privateKeyHex, numOfrecipients, threshold);
+            shares = secrets.share(privateKeyHex, numOfRecipients, threshold);
             return shares;
         }
-        const account = Account.generateNewAccount(NetworkType.MIJIN_TEST);
+        const account = Account.generateNewAccount(networkType);
         privateKeyHex = secrets.str2hex(account.privateKey);
-        shares = secrets.share(privateKeyHex, numOfrecipients, threshold);
+        shares = secrets.share(privateKeyHex, numOfRecipients, threshold);
         return shares;
     }
 
@@ -55,12 +64,17 @@ export class SecretShareMessage {
      * Decrypts a given secret with a sufficent number of shares
      * @param messagePayload either a string or a PlainMessage
      * @param shardedPrivateKeyShares the shares required for decrypted (must meet the threshold)
-     * @returns String
+     * @param threshold minimum number of shares needed to decrypt
+     * @returns PlainMessage
      */
-    public static decrypt(messagePayload: string, shardedPrivateKeyShares: [any], threshold: number): PlainMessage {
+    public static decrypt(
+        message: EncryptedMessage,
+        shardedPrivateKeyShares: [any],
+        threshold: number,
+        networkType: NetworkType): PlainMessage {
+
         const privateKey = secrets.combine(shardedPrivateKeyShares.slice(0, threshold));
-        const account = Account.createFromPrivateKey(secrets.hex2str(privateKey), NetworkType.MIJIN_TEST);
-        const encryptedMessage: EncryptedMessage = EncryptedMessage.createFromDTO(messagePayload);
-        return account.decryptMessage(encryptedMessage, account.publicAccount);
+        const account = Account.createFromPrivateKey(secrets.hex2str(privateKey), networkType);
+        return account.decryptMessage(message, account.publicAccount);
     }
 }
