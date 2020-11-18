@@ -55,7 +55,7 @@
     "ghooks": "^2.0.4",
     "jest": "^22.4.4",
     "rimraf": "^2.7.1",
-    "semantic-release": "^15.14.0",
+    "semantic-release": "^17.2.3",
     "sinon": "^5.1.1",
     "symbol-sdk": "^0.21.0",
     "travis-deploy-once": "^5.0.11",
